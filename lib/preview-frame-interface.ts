@@ -14,7 +14,7 @@ export interface ErrorReporter {
 // origin for security, which means that we'd have to use postMessage()
 // to communicate with it. Thus this interface needs to be asynchronous.
 export interface Runner extends Window {
-  startSketch: (sketch: string, p5version: string, maxRunTime: number,
-                loopCheckFuncName: string, baseURL: string,
+startSketch: (sketch: string, p5version: string, p5addons: string,
+                maxRunTime: number, loopCheckFuncName: string, baseURL: string,
                 errorCb: ErrorReporter) => void
 }

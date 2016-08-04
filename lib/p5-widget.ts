@@ -100,6 +100,7 @@ function replaceScriptWithWidget(el: HTMLScriptElement) {
   let previewWidth = parseInt(el.getAttribute('data-preview-width'));
   let baseSketchURL = absoluteURL(el.getAttribute('data-base-url'));
   let p5version = el.getAttribute('data-p5-version');
+  let p5addons = el.getAttribute('data-p5-addons');
   let autoplay = el.hasAttribute('data-autoplay');
   let url;
   let qsArgs = [

@@ -10,6 +10,7 @@ const LOOP_CHECK_FUNC_NAME = '__loopCheck';
 
 interface Props {
   p5version: string,
+  p5addons: string,
   width: number,
   content: string,
   baseSketchURL: string,

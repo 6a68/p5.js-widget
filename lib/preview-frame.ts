@@ -9,8 +9,7 @@ interface PreviewFrameWindow extends PreviewFrame.Runner {
 
 let global = window as PreviewFrameWindow;
 
-function loadP5(version: string, cb?: () => void) {
-  let url = '//cdnjs.cloudflare.com/ajax/libs/p5.js/' + version + '/p5.js';
+function loadScript(url, cb?: () => void) {
   let script = document.createElement('script');
 
   cb = cb || (() => {});
@@ -19,6 +18,21 @@ function loadP5(version: string, cb?: () => void) {
   script.setAttribute('src', url);
 
   document.body.appendChild(script);
+}
+
+function loadP5(version: string, cb?: () => void) {
+  let url = '//cdnjs.cloudflare.com/ajax/libs/p5.js/' + version + '/p5.js';
+  loadScript(url, cb);
+}
+
+function loadP5Dom(version: string, cb?: () => void) {
+  let url = '//cdnjs.cloudflare.com/ajax/libs/p5.js/' + version + '/addons/p5.dom.js';
+  loadScript(url, cb);
+}
+
+function loadP5Sound(version: string, cb?: () => void) {
+  let url = '//cdnjs.cloudflare.com/ajax/libs/p5.js/' + version + '/addons/p5.sound.js';
+  loadScript(url, cb);
 }
 
 function LoopChecker(sketch: string, funcName: string, maxRunTime: number) {
@@ -61,8 +75,8 @@ function setBaseURL(url: string) {
   document.head.appendChild(base);
 }
 
-function startSketch(sketch: string, p5version: string, maxRunTime: number,
-                     loopCheckFuncName: string, baseURL: string,
+function startSketch(sketch: string, p5version: string, p5addons: string,
+                     maxRunTime: number, loopCheckFuncName: string, baseURL: string,
                      errorCb: PreviewFrame.ErrorReporter) {
   let sketchScript = document.createElement('script');
   let loopChecker = LoopChecker(sketch, loopCheckFuncName, maxRunTime);
@@ -95,6 +109,14 @@ function startSketch(sketch: string, p5version: string, maxRunTime: number,
   document.body.appendChild(sketchScript);
 
   loadP5(p5version);
+
+  if (p5addons.indexOf('dom')) {
+    loadP5Dom(p5version);
+  }
+
+  if (p5addons.indexOf('sound')) {
+    loadP5Sound(p5version);
+  }
 }
 
 global.startSketch = startSketch;

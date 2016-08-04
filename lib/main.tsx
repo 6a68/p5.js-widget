@@ -21,6 +21,7 @@ function start() {
   let autoplay = (qs['autoplay'] === 'on');
   let initialContent = qs['sketch'] || defaultSketchJS;
   let p5version = qs['p5version'] || defaults.P5_VERSION;
+  let p5addons = qs['p5addons'] || defaults.P5_ADDONS;
   let previewWidth = parseInt(qs['previewWidth']);
 
   if (isNaN(previewWidth)) {
@@ -34,6 +35,7 @@ function start() {
          autosaver={new SessionStorageAutosaver(id)}
          baseSketchURL={baseSketchURL}
          p5version={p5version}
+         p5addons={p5addons}
          previewWidth={previewWidth}
          autoplay={autoplay} />,
     document.getElementById('app-holder')
