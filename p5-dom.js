@@ -808,7 +808,7 @@
     var elt = document.createElement(type);
 
     // allow src to be empty
-    var src = src || '';
+    src = src || '';
     if (typeof src === 'string') {
       src = [src];
     }
@@ -1547,7 +1547,6 @@
     if (this.elt.parentNode) {
       this.elt.parentNode.removeChild(this.elt);
     }
-    delete(this);
   };
 
 
